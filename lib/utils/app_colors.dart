@@ -7,4 +7,6 @@ class AppColors {
   static Color lightgreen = Color(0xffF0F8EC);
   static Color lightpink = Color(0xffFBF6EE);
   static Color brownColor = Color(0xffCE922A);
+  static Color greyColor = Color(0xffACACAC);
+  static Color darkBrown = Color(0xff9D6F1F);
 }
