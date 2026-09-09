@@ -1,5 +1,6 @@
 import 'package:bmiapp/utils/app_colors.dart';
 import 'package:bmiapp/utils/size_config.dart';
+import 'package:bmiapp/widget/bmi_result_dialog.dart';
 import 'package:bmiapp/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,9 +14,9 @@ class BmiCalculatorView extends StatefulWidget {
 }
 
 class _BmiCalculatorViewState extends State<BmiCalculatorView> {
-  int weight = 1;
-  int age = 1;
-  int height = 1;
+  int weight = 65;
+  int age = 26;
+  int height = 170;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -234,7 +235,21 @@ class _BmiCalculatorViewState extends State<BmiCalculatorView> {
                   ),
                 ),
               ),
-              CustomButton(text: "Calculate", onTap: () {}),
+              CustomButton(
+                text: "Calculate",
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return BmiResultDialog(
+                        weight: weight,
+                        age: age,
+                        height: height,
+                      );
+                    },
+                  );
+                },
+              ),
             ],
           ),
         ),
