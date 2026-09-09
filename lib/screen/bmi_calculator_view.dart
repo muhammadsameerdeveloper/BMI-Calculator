@@ -3,6 +3,7 @@ import 'package:bmiapp/utils/size_config.dart';
 import 'package:bmiapp/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:simple_ruler_picker/simple_ruler_picker.dart';
 
 class BmiCalculatorView extends StatefulWidget {
   const BmiCalculatorView({super.key});
@@ -212,6 +213,21 @@ class _BmiCalculatorViewState extends State<BmiCalculatorView> {
                         style: TextStyle(
                           color: AppColors.brownColor,
                           fontSize: SizeConfig.fontSize(0.02),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        child: SimpleRulerPicker(
+                          minValue: 50,
+                          maxValue: 305,
+                          initialValue: 160,
+                          scaleLabelSize: 0,
+
+                          onValueChanged: (value) {
+                            setState(() {
+                              height = value;
+                            });
+                          },
                         ),
                       ),
                     ],
