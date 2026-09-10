@@ -1,6 +1,7 @@
 import 'package:bmiapp/utils/app_colors.dart';
 import 'package:bmiapp/utils/size_config.dart';
 import 'package:bmiapp/widget/custom_button.dart';
+import 'package:bmiapp/widget/custom_range_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -8,11 +9,13 @@ class BmiResultDialog extends StatelessWidget {
   final int weight;
   final int age;
   final int height;
+  final num result;
   const BmiResultDialog({
     super.key,
     required this.weight,
     required this.age,
     required this.height,
+    required this.result,
   });
 
   @override
@@ -31,12 +34,13 @@ class BmiResultDialog extends StatelessWidget {
               ),
             ),
             Text(
-              "22.5",
+              result.toStringAsFixed(1),
               style: TextStyle(
                 fontSize: SizeConfig.fontSize(0.05),
                 color: AppColors.greenColor,
               ),
             ),
+            CustomRangeIndicator(result: result),
             Divider(thickness: 1, color: AppColors.greyColor),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

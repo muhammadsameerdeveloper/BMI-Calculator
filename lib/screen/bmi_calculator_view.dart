@@ -17,6 +17,7 @@ class _BmiCalculatorViewState extends State<BmiCalculatorView> {
   int weight = 65;
   int age = 26;
   int height = 170;
+  num result = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -238,10 +239,12 @@ class _BmiCalculatorViewState extends State<BmiCalculatorView> {
               CustomButton(
                 text: "Calculate",
                 onTap: () {
+                  num result = weight / ((height / 100) * (height / 100));
                   showDialog(
                     context: context,
                     builder: (context) {
                       return BmiResultDialog(
+                        result: result,
                         weight: weight,
                         age: age,
                         height: height,
