@@ -5,8 +5,15 @@ import 'package:bmiapp/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class GenderSelectionView extends StatelessWidget {
+class GenderSelectionView extends StatefulWidget {
   const GenderSelectionView({super.key});
+
+  @override
+  State<GenderSelectionView> createState() => _GenderSelectionViewState();
+}
+
+class _GenderSelectionViewState extends State<GenderSelectionView> {
+  String selectedGender = "";
 
   @override
   Widget build(BuildContext context) {
@@ -45,46 +52,64 @@ class GenderSelectionView extends StatelessWidget {
                   fontSize: SizeConfig.fontSize(0.04),
                 ),
               ),
-              Container(
-                height: SizeConfig.height * 0.3,
-                width: SizeConfig.width * 0.9,
-                decoration: BoxDecoration(
-                  color: AppColors.lightgreen,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      "Male",
-                      style: GoogleFonts.roboto(
-                        color: AppColors.greenColor,
-                        fontSize: SizeConfig.fontSize(0.05),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedGender = "Male";
+                  });
+                },
+                child: Container(
+                  height: SizeConfig.height * 0.3,
+                  width: SizeConfig.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: selectedGender == "Male"
+                        ? AppColors.lightgreen
+                        : Colors.grey.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "Male",
+                        style: GoogleFonts.roboto(
+                          color: AppColors.greenColor,
+                          fontSize: SizeConfig.fontSize(0.05),
+                        ),
                       ),
-                    ),
-                    Image.asset("assets/images/MalePdf.png"),
-                  ],
+                      Image.asset("assets/images/MalePdf.png"),
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                height: SizeConfig.height * 0.3,
-                width: SizeConfig.width * 0.9,
-                decoration: BoxDecoration(
-                  color: AppColors.lightpink,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      "Female",
-                      style: GoogleFonts.roboto(
-                        color: AppColors.brownColor,
-                        fontSize: SizeConfig.fontSize(0.05),
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedGender = "Female";
+                  });
+                },
+                child: Container(
+                  height: SizeConfig.height * 0.3,
+                  width: SizeConfig.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: selectedGender == "Female"
+                        ? AppColors.lightpink
+                        : Colors.grey.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "Female",
+                        style: GoogleFonts.roboto(
+                          color: AppColors.brownColor,
+                          fontSize: SizeConfig.fontSize(0.05),
+                        ),
                       ),
-                    ),
-                    Image.asset("assets/images/Female.png"),
-                  ],
+                      Image.asset("assets/images/Female.png"),
+                    ],
+                  ),
                 ),
               ),
               CustomButton(
@@ -93,7 +118,8 @@ class GenderSelectionView extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BmiCalculatorView(),
+                      builder: (context) =>
+                          BmiCalculatorView(gender: selectedGender),
                     ),
                   );
                 },

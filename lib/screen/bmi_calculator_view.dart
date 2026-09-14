@@ -7,7 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_ruler_picker/simple_ruler_picker.dart';
 
 class BmiCalculatorView extends StatefulWidget {
-  const BmiCalculatorView({super.key});
+  final String gender;
+  const BmiCalculatorView({super.key, required this.gender});
 
   @override
   State<BmiCalculatorView> createState() => _BmiCalculatorViewState();
